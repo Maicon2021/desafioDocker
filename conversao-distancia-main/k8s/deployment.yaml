@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: conversao-dist
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conversao-dist
+  
+  template:
+    metadata:
+      labels:
+        app: conversao-dist
+    
+    spec:
+      containers:
+      - name: conversao-dist  
+        image: maiconandreis/conversao-dist:v1
+
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: conversao-dist
+spec:
+  selector:
+    app: conversao-dist
+  ports:
+  - port: 80
+    targetPort: 5000
+    nodePort: 30000
+  type: NodePort
