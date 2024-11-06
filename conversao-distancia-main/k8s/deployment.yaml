@@ -6,7 +6,7 @@ metadata:
   name: conversao-dist
 
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: conversao-dist
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: conversao-dist  
-        image: maiconandreis/conversao-dist:v1
+        image: maiconandreis/conversao-dist:v2
 
         ports:
         - containerPort: 5000
